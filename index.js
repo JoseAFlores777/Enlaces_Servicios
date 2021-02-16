@@ -10,7 +10,7 @@ $(document).ready(function () {
     { nombre: "Club Bíblico", hora: "0:00 PM" }
     ];
 
-    var codServicio = 2,
+    var codServicio = 4,
         url_f_iglesia = "https://fb.watch/3FpgksFjtJ/",
         url_f_Youtube = "https://youtu.be/xXLxQWiN0gY",
         url_f_conexion = "",
@@ -37,17 +37,17 @@ $(document).ready(function () {
     
 
     
+    $("#url_f_iglesia").attr("href", url_f_iglesia);
+    $("#url_f_Youtube").attr("href", url_f_Youtube);
+    $("#url_f_conexion").attr("href", url_f_conexion);
+    $("#url_f_Zoom").attr("href", url_f_Zoom);
+    
 
     $("#img").attr("src", url_img);
 
     $("#servicio").text(servicios[codServicio]['nombre']);
     $("#Versiculo").append(servicios[codServicio]['hora']);
         
-    $("#url_f_iglesia").attr("href", url_f_iglesia);
-    $("#url_f_conexion").attr("href", url_f_conexion);
-    $("#url_f_Youtube").attr("href", url_f_Youtube);
-    $("#url_f_Zoom").attr("href", url_f_Zoom);
-    
 
 
 });
