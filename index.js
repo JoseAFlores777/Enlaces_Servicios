@@ -10,18 +10,18 @@ $(document).ready(function () {
                      { nombre: "Club Bíblico", hora: "0:00 PM" }
     ];
 
-    var codServicio = 0,
-        url_f_iglesia = "",
+    var codServicio = 2,
+        url_f_iglesia = "https://fb.watch/3FpgksFjtJ/",
+        url_f_Youtube = "https://youtu.be/xXLxQWiN0gY",
         url_f_conexion = "",
-        url_f_Youtube = "",
         url_f_Zoom = "",
         url_img = "img.jpeg";
     
         
         $("#url_f_iglesia").css("visibility","visible");
-        $("#url_f_conexion").css("visibility","visible");
+        // $("#url_f_conexion").css("visibility","visible");
         $("#url_f_Youtube").css("visibility","visible");
-        $("#url_f_Zoom").css("visibility","visible");
+        // $("#url_f_Zoom").css("visibility","visible");
     
 
         $("#img").attr("src", url_img);
