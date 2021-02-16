@@ -1,0 +1,90 @@
+
+
+/* .contenedor-card{
+  height: 100% !important;
+  background-image: url('fondo-01.png') !important;
+  background-size: cover !important;
+background-repeat: no-repeat !important;
+} */
+
+html,
+body,
+.container-fluid {
+  height: 100%;
+  background-image: url('fondo-01.png') !important;
+  background-size: cover !important;
+}
+
+
+.card{
+    width: 18rem;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 21px 3px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 21px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 21px 3px rgba(0,0,0,0.75);
+}
+
+#Instruccion{
+  font-size: small;
+  text-align: center;
+}
+
+.Logo{
+  width: 6%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    display: block;
+}
+
+
+/* @media (min-width: 576px) { ... }
+
+
+@media (min-width: 768px) { ... }
+
+
+@media (min-width: 992px) { ... }
+
+
+@media (min-width: 1200px) { } */
+@media (min-width: 280px) {  
+  .Logo{
+  width: 40%
+} 
+.card{
+  width: 90%;
+}
+} 
+@media (min-width: 500px) {  
+  .Logo{
+  width: 20%
+}
+.card{
+  width: 70%
+} 
+} 
+@media (min-width: 768px) {  
+  .Logo{
+  width: 15%
+} 
+.card{
+  width: 50%
+} 
+} 
+
+@media (min-width: 1200px) {  
+  .Logo{
+  width: 10%
+} } 
+
+@media (min-width: 1400px) { 
+  .Logo{
+    width: 7%
+  }
+}
