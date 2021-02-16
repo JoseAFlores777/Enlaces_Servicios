@@ -55,16 +55,14 @@ body,
 @media (min-width: 1200px) { } */
 @media (min-width: 280px) {  
   .Logo{
-  width: 20%
+  width: 15%
 } 
 .card{
   width: 90%;
 }
 } 
 @media (min-width: 500px) {  
-  .Logo{
-  width: 12%
-}
+
 .card{
   width: 70%
 } 
