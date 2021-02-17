@@ -53,36 +53,60 @@ body,
 
 
 @media (min-width: 1200px) { } */
+
 @media (min-width: 280px) {  
   .Logo{
-  width: 15%
-} 
+    width: 10%
+  } 
 .card{
-  width: 90%;
+  width: 70%;
+  
 }
 } 
 @media (min-width: 500px) {  
 
 .card{
-  width: 70%
+  width: 50%
+} 
+} 
+@media (min-width: 720px) {  
+
+.card{
+  width: 40%
 } 
 } 
 @media (min-width: 768px) {  
   .Logo{
-  width: 15%
+  width: 10%
 } 
 .card{
-  width: 50%
+  width: 40%
+} 
+} 
+@media (min-width: 941px) {  
+  .Logo{
+  width: 10%
+} 
+.card{
+  width: 30%
+} 
+} 
+@media (min-width: 1137px) {  
+  .Logo{
+  width: 10%
+} 
+.card{
+  width: 25%
 } 
 } 
 
 @media (min-width: 1200px) {  
   .Logo{
-  width: 10%
+  width: 5%
 } } 
 
 @media (min-width: 1400px) { 
   .Logo{
-    width: 7%
+    width: 5%
   }
 }
