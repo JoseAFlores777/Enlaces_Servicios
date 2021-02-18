@@ -169,8 +169,12 @@ const vue = new Vue({
 
 
 
+       setTimeout(refrescar, 30000);
 
-
+       function refrescar(){
+        //Actualiza la página
+        location.reload();
+      }
 
 
 

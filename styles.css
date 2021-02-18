@@ -154,6 +154,8 @@ color: rgba(90, 90, 90, 0.8)
 @media (min-width: 1200px) { } */ 
 
 @media (min-width: 280px) {  
+
+  
   .Logo{
     width: 10%
   } 
@@ -186,7 +188,7 @@ color: rgba(90, 90, 90, 0.8)
   width: 10%
 } 
 .card{
-  width: 30%
+  width: 44%
 } 
 } 
 @media (min-width: 941px) {  
@@ -214,5 +216,13 @@ color: rgba(90, 90, 90, 0.8)
 @media (min-width: 1400px) { 
   .Logo{
     width: 5%
+  }
+}
+
+
+@media (max-height: 578px) {
+  /* CSS stuff */
+  .footer{
+    position: unset;
   }
 }
