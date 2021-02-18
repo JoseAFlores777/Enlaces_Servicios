@@ -46,7 +46,7 @@ $(document).ready(function () {
     
     } else { 
         $(".Transmision").css("visibility", "hidden");
-         $("#btns").append('<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://www.youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA/about" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion"><a href="">Quieres que Oremos Por ti haz clic</a></div></div>');
+         $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion"><a href="${url_peticiones}">Quieres que Oremos Por ti haz clic</a></div></div>`);
         url_img = "Iglesia.jpeg";
         
     }
