@@ -147,7 +147,7 @@ const vue = new Vue({
        
        } else { 
            $(".Transmision").css("visibility", "hidden");
-            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion"><a href="${url_peticiones}">Quieres que Oremos Por ti haz clic</a></div></div>`);
+            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">Quieres que Oremos Por ti haz <a href="${url_peticiones}">clic Aquí</a></div></div>`);
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][7])}&export=download`;
            
        }
