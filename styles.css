@@ -7,12 +7,17 @@
 background-repeat: no-repeat !important;
 } */
 
+
 html,
 body,
 .container-fluid {
   height: 100%;
   background-image: url('fondo-01.png') !important;
   background-size: cover !important;
+}
+
+.container-fluid{
+  z-index: 1;
 }
 
 
@@ -125,12 +130,16 @@ color: rgba(90, 90, 90, 0.8)
 }
 
 .footer{
+  z-index: 0;
   text-align: center;
   background-color: white;
   font-size: 80%;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  position:fixed;
+  bottom:0;
+  clear:both;
+  width:100%;
+  
+  /* height:100px; */
 }
 .footer text{
   margin-top: 1%;
@@ -161,14 +170,17 @@ color: rgba(90, 90, 90, 0.8)
   } 
 .card{
   width: 80%;
-  
+  margin-top: 15px;
 }
+
+
+
 } 
 @media (min-width: 400px) {  
 
 .card{
   width: 70%;
-  
+  margin-top: 30px;
 }
 } 
 @media (min-width: 500px) {  
@@ -219,10 +231,3 @@ color: rgba(90, 90, 90, 0.8)
   }
 }
 
-
-@media (max-height: 578px) {
-  /* CSS stuff */
-  .footer{
-    position: unset;
-  }
-}
