@@ -151,16 +151,10 @@ const vue = new Vue({
        } else { 
            $(".Transmision").css("visibility", "hidden");
             $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">   <p>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a  id="url_f_Encuesta1" href=""  class="btn btn-primary w-100 mb-1">
               LLenar Encuesta
             </a>
           </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body" style="width: 100%;">
-              <a style="margin-top: 20px;"  id="url_f_Encuesta1" href=""  class="btn btn-primary w-100 mb-1">Miércoles-Oración</a><br>
-              <a  id="url_f_Encuesta2" href=""  class="btn btn-primary w-100 mb-1">Domingo-Mañana</a><br>
-              <a  id="url_f_Encuesta3" href=""  class="btn btn-primary w-100 mb-1">Domingo-Tarde</a><br>
-            </div>
             
           </div><p><a href="${url_peticiones}">Quieres que Oremos Por ti haz clic</a></p> </div></div>`);
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][7])}&export=download`;
