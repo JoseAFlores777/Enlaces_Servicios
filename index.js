@@ -69,14 +69,17 @@ const vue = new Vue({
           { nombre: "Club Bíblico", hora: "0:00 PM" }
        ];
        
-       var codServicio = getServicio(arreglo[0][0],servicios),
+       var codServicio = getServicio(arreglo[0][0], servicios),
            url_f_iglesia = `${arreglo[0][1]}`,
            url_f_iglesia = `${arreglo[0][1]}`,
            url_f_Youtube = `${arreglo[0][2]}`,
            url_f_conexion = `${arreglo[0][3]}`,
            url_f_Zoom = `${arreglo[0][4]}`,
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][5])}&export=download`,
-           url_peticiones = `${arreglo[0][6]}`;
+           url_peticiones = `${arreglo[0][6]}`,
+           url_f_Encuesta1 = `${arreglo[0][8]}`,
+           url_f_Encuesta2 = `${arreglo[0][9]}`,
+           url_f_Encuesta3 = `${arreglo[0][10]}`;
 
    
     function ExtraerID(Link) {
@@ -147,7 +150,19 @@ const vue = new Vue({
        
        } else { 
            $(".Transmision").css("visibility", "hidden");
-            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">Quieres que Oremos Por ti haz <a href="${url_peticiones}">clic Aquí</a></div></div>`);
+            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">   <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              LLenar Encuesta
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body" style="width: 100%;">
+              <a style="margin-top: 20px;"  id="url_f_Encuesta1" href=""  class="btn btn-primary w-100 mb-1">Miércoles-Oración</a><br>
+              <a  id="url_f_Encuesta2" href=""  class="btn btn-primary w-100 mb-1">Domingo-Mañana</a><br>
+              <a  id="url_f_Encuesta3" href=""  class="btn btn-primary w-100 mb-1">Domingo-Tarde</a><br>
+            </div>
+            
+          </div><p><a href="${url_peticiones}">Quieres que Oremos Por ti haz clic</a></p> </div></div>`);
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][7])}&export=download`;
            
        }
@@ -159,6 +174,9 @@ const vue = new Vue({
        $("#url_f_Youtube").attr("href", url_f_Youtube);
        $("#url_f_conexion").attr("href", url_f_conexion);
        $("#url_f_Zoom").attr("href", url_f_Zoom);
+       $("#url_f_Encuesta1").attr("href", url_f_Encuesta1);
+       $("#url_f_Encuesta2").attr("href", url_f_Encuesta2);
+       $("#url_f_Encuesta3").attr("href", url_f_Encuesta3);
        
        console.log(url_img)
        $("#img").attr("src", url_img);
