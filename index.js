@@ -38,7 +38,8 @@ const vue = new Vue({
     // id de la hoja de calculo
     idSheets = '1EX5gZVdPyvSiV5ZGnJ0RGfxRDveRZntLYjc8ek6CuBU';
     //// nuestra      APIKey
-    apiKey = ' AIzaSyDOCjOI0pIspgmSsFHWMD-5C_JQkCeYOOI'; 
+    
+    apiKey = ' AIzaSyB9eDHJPyAsnDsP84sxORtj8dPHDsWEcCg'; 
     // rango de la hoja de calculo que queremos leer
     values = 'A2:AZ100';
    // fetch es un método nativo para hacer peticiones http
@@ -68,6 +69,11 @@ const vue = new Vue({
           { nombre: "Servicio Evangelístico", hora: "5:00 PM" },
           { nombre: "Club Bíblico", hora: "0:00 PM" }
        ];
+     
+
+       String.prototype.capitalize = function() {
+        return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
+      };     
        
        var codServicio = getServicio(arreglo[0][0], servicios),
            url_f_iglesia = `${arreglo[0][1]}`,
@@ -78,16 +84,28 @@ const vue = new Vue({
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][5])}&export=download`,
            url_peticiones = `${arreglo[0][6]}`,
            url_f_Encuesta1 = `${arreglo[0][8]}`,
-           url_f_Encuesta2 = `${arreglo[0][9]}`,
-           url_f_Encuesta3 = `${arreglo[0][10]}`;
+           IdEntryNombre = `${arreglo[0][9]}`,
+           IdEntryCelular = `${arreglo[0][10]}`,
+           IdEntryRuta = `${arreglo[0][11]}`,
+           IdEntryTransporte = `${arreglo[0][12]}`;
 
-   
+           if (!localStorage.getItem("Datos")) {
+            var Datos = { Nombres: "", Apellidos: "", Cel: "", Ruta: "", Transporte: "" };
+          } else {
+            Datos = JSON.parse(localStorage.getItem('Datos'));
+            url_f_Encuesta1 = `${arreglo[0][8]}&entry.${IdEntryNombre}=${Datos.Nombres.trim().capitalize().replace(/ /g, "+")}+${Datos.Apellidos.trim().capitalize().replace(/ /g, "+")}&entry.${IdEntryCelular}=${Datos.Cel.trim()}&entry.${IdEntryRuta}=${Datos.Ruta.trim().capitalize().replace(/ /g, "+")}&entry.${IdEntryTransporte}=${Datos.Transporte.trim().replace(/ /g, "+")}`;
+     }
+     
     function ExtraerID(Link) {
         var ID = Link.split("/");
         return ID[5];
     }
 
-    
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+     
+
     
     function getServicio(Nombre_Servicio, servicios) {
       for (let index = 0; index < servicios.length; index++) {
@@ -150,27 +168,95 @@ const vue = new Vue({
        
        } else { 
            $(".Transmision").css("visibility", "hidden");
-            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live">No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">   <p>
-            <a  id="url_f_Encuesta1" href=""  class="btn btn-primary w-100 mb-1">
-              LLenar Encuesta
-            </a>
-          </p>
+            $("#btns").append(`<div class="msj-TransmOFF"><div class="versiculo"><q>Yo me alegré con los que me decían: A la casa de Jehová iremos.</q> <br>Salmos 122:1</div><div class="msj-N-live"><strong>${Datos.Nombres.capitalize()}</strong>, No Hay Transmisiones en Vivo, <br> Visite nuestras Redes sociales</div><div class="redes"><a class="facebook" href="https://www.facebook.com/ibcunafamiliaconamor/" target="_blank"><i class="fab fa-facebook"></i></a><a class="youtube" href="https://youtube.com/channel/UCXrNOwQkYBa-r5XDE33y8CA" target="_blank"><i class="fab fa-youtube"></i></a></div><div class="oracion">   <p>
+
             
           </div><p><a href="${url_peticiones}">Quieres que Oremos Por ti haz clic</a></p> </div></div>`);
            url_img = `https://drive.google.com/uc?id=${ExtraerID(arreglo[0][7])}&export=download`;
            
        }
                
-
+       if (!((arreglo[0][8] == 'undefined')||(arreglo[0][8]==""))) {
+         
+         $("#btns").append(`<a  id="url_f_Encuesta1"   class="btn btn-primary w-100 mb-1">LLenar Encuesta</a></p>`)
+    }
        
+
+     $("#url_f_Encuesta1").click( async ()=> {
+       if (!localStorage.getItem("Datos")) {
+         
+         const { value: formValues } = await Swal.fire({
+           title: 'Datos Generales',
+           html:
+             'Agrega tus datos para optimizar el llenado de los formularios' +
+             '<input type="text" id="swal-input1" placeholder="Escribe tu nombre" class="swal2-input">' +
+             '<input type="text" id="swal-input2" placeholder="Escribe tu apellido" class="swal2-input">' +
+             '<input type="text" id="swal-input3" placeholder="Celular" class="swal2-input">' +
+             '<input type="text" id="swal-input4" placeholder="Escribe la ruta o colonia donde vive" class="swal2-input">' +
+             '<select type="text" id="swal-input5" class="form-select" aria-label="Default select example"><option value="" selected>Seleccione el Transporte</option><option value="Bus de la Iglesia">Bus de la Iglesia</option><option value="A Pie">A Pie</option><option value="Vehículo Personal">Vehículo Personal</option></select>',
+           focusConfirm: false,
+           showCloseButton: true,
+           preConfirm: () => {
+             if (($('#swal-input1').val() === "") || ($('#swal-input2').val() === "") || ($('#swal-input3').val() === "") || ($('#swal-input4').val() === "") || ($('#swal-input5').val() === "")) {
+               Swal.showValidationMessage(
+                 'Completa todos los campos'
+               )
+             }
+  
+             return [
+               $('#swal-input1').val(),
+               $('#swal-input2').val(),
+               $('#swal-input3').val(),
+               $('#swal-input4').val(),
+               $('#swal-input5').val()
+             ]
+           }
+         })
+          
+         if (formValues) {
+             
+           Datos.Nombres = $('#swal-input1').val();
+           Datos.Apellidos = $('#swal-input2').val();
+           Datos.Cel = $('#swal-input3').val();
+           Datos.Ruta = $('#swal-input4').val();
+           Datos.Transporte = $('#swal-input5').val();
+           localStorage.setItem('Datos', JSON.stringify(Datos));
+           Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: $('#swal-input1').val().capitalize() + ', Se han Guardado sus Datos',
+             showConfirmButton: false,
+             timer: 3000
+           })
+           url_f_Encuesta1 = `${arreglo[0][8]}&entry.${IdEntryNombre}=${Datos.Nombres.trim().capitalize().replace(/ /g, "+")}+${Datos.Apellidos.trim().capitalize().replace(/ /g, "+")}&entry.${IdEntryCelular}=${Datos.Cel.trim()}&entry.${IdEntryRuta}=${Datos.Ruta.trim().capitalize().replace(/ /g, "+")}&entry.${IdEntryTransporte}=${Datos.Transporte.trim().replace(/ /g, "+")}`;
+           $("#url_f_Encuesta1").attr("href", url_f_Encuesta1);
+           
+           sleep(2000).then(() => { window.location = url_f_Encuesta1; });
+           
+         }
+          
+          
+         
+       } else {
+         $("#url_f_Encuesta1").attr("href", url_f_Encuesta1);
+         window.location = url_f_Encuesta1;
+       }
+
+      //  setTimeout(window.location = url_f_Encuesta1, 3000);
+      
+       
+     })
+     
+
+    
+     
+ 
        
        $("#url_f_iglesia").attr("href", url_f_iglesia);
        $("#url_f_Youtube").attr("href", url_f_Youtube);
        $("#url_f_conexion").attr("href", url_f_conexion);
        $("#url_f_Zoom").attr("href", url_f_Zoom);
-       $("#url_f_Encuesta1").attr("href", url_f_Encuesta1);
-       $("#url_f_Encuesta2").attr("href", url_f_Encuesta2);
-       $("#url_f_Encuesta3").attr("href", url_f_Encuesta3);
+ 
        
        console.log(url_img)
        $("#img").attr("src", url_img);
@@ -181,77 +267,12 @@ const vue = new Vue({
 
 
 
-       setTimeout(refrescar, 30000);
-
-       function refrescar(){
-        //Actualiza la página
-        location.reload();
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      //  setTimeout(refrescar, 30000);
+
+      //  function refrescar(){
+      //   //Actualiza la página
+      //   location.reload();
+      // }
 
 
 
