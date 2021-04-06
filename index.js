@@ -116,35 +116,16 @@ const vue = new Vue({
     }
     
    
-    // if((url_f_iglesia == 'undefined')||(url_f_iglesia=="")){
-    //     console.log("url_f_iglesia no está definido");
-    //   } else {
-    //     console.log("url_f_iglesia está definido");
-    //   }
-    // if((url_f_Youtube == 'undefined')||(url_f_Youtube=="")){
-    //     console.log("url_f_Youtube no está definido");
-    //   } else {
-    //     console.log("url_f_Youtube está definido");
-    //   }
-    // if((url_f_conexion == 'undefined')||(url_f_conexion=="")){
-    //     console.log("url_f_conexion no está definido");
-    //   } else {
-    //     console.log("url_f_conexion está definido");
-    //   }
-    // if((url_f_Zoom == 'undefined')||(url_f_Zoom=="")){
-    //     console.log("url_f_Zoom no está definido");
-    //   } else {
-    //     console.log("url_f_Zoom está definido");
-    //   }
-
-    //    console.log(url_img)
+  
     if((url_img == 'undefined')||(url_img=="")){
         console.log("url_img no está definido");
       } else {
         console.log("url_img está definido");
       }
                
-       
+       if (!localStorage.getItem("Datos")) {
+        $("#ModificarDatos").css("visibility", "hidden");
+       }
 
        
                
@@ -178,9 +159,62 @@ const vue = new Vue({
                
        if (!((arreglo[0][8] == 'undefined')||(arreglo[0][8]==""))) {
          
-         $("#btns").append(`<a  id="url_f_Encuesta1"   class="btn btn-primary w-100 mb-1">LLenar Encuesta</a></p>`)
+         $("#btns").append(`<a  id="url_f_Encuesta1"   class="btn btn-primary w-100 mb-1">Llenar Encuesta</a></p>`)
     }
        
+
+     $("#ModificarDatos").click( async ()=> {
+       
+         
+         const { value: formValues } = await Swal.fire({
+           title: 'Editar Datos Generales',
+           html:
+             `Agrega tus datos para optimizar el llenado de los formularios` +
+             `<input  value="${Datos.Nombres}" type="text" id="swal-input1" placeholder="Escribe tu nombre" class="swal2-input">` +
+             `<input  value="${Datos.Apellidos}" type="text" id="swal-input2" placeholder="Escribe tu apellido" class="swal2-input">` +
+             `<input  value="${Datos.Cel}" type="text" id="swal-input3" placeholder="Celular" class="swal2-input">` +
+             `<input  value="${Datos.Ruta}" type="text" id="swal-input4" placeholder="Escribe la ruta o colonia donde vive" class="swal2-input">` +
+             `<select  type="text" id="swal-input5" class="form-select" aria-label="Default select example"><option value="${Datos.Transporte}" selected>${Datos.Transporte}</option><option value="Bus de la Iglesia">Bus de la Iglesia</option><option value="A Pie">A Pie</option><option value="Vehículo Personal">Vehículo Personal</option></selec>`,
+           focusConfirm: false,
+           showCloseButton: true,
+           preConfirm: () => {
+             if (($('#swal-input1').val() === "") || ($('#swal-input2').val() === "") || ($('#swal-input3').val() === "") || ($('#swal-input4').val() === "") || ($('#swal-input5').val() === "")) {
+               Swal.showValidationMessage(
+                 'Completa todos los campos'
+               )
+             }
+  
+             return [
+               $('#swal-input1').val(),
+               $('#swal-input2').val(),
+               $('#swal-input3').val(),
+               $('#swal-input4').val(),
+               $('#swal-input5').val()
+             ]
+           }
+         })
+          
+         if (formValues) {
+             
+           Datos.Nombres = $('#swal-input1').val();
+           Datos.Apellidos = $('#swal-input2').val();
+           Datos.Cel = $('#swal-input3').val();
+           Datos.Ruta = $('#swal-input4').val();
+           Datos.Transporte = $('#swal-input5').val();
+           localStorage.setItem('Datos', JSON.stringify(Datos));
+           Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: $('#swal-input1').val().capitalize() + ', Se han Guardado sus Datos',
+             showConfirmButton: false,
+             timer: 3000
+           })
+           sleep(2000).then(() => { location.reload(); });
+           
+         }
+
+     })
+
 
      $("#url_f_Encuesta1").click( async ()=> {
        if (!localStorage.getItem("Datos")) {
