@@ -176,10 +176,10 @@ color: rgba(90, 90, 90, 0.8)
 
 
 }
-@media (min-heigth: 750px) {  
+@media (min-height: 750px) {  
 
 .footer{
-  position:absolute;
+ position:fixed;
 }
 }
 @media (min-width: 400px) {  
